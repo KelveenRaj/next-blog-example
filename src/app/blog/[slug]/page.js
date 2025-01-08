@@ -8,17 +8,20 @@ export const generateStaticParams = async () => {
     slug: post.slug,
   }));
 };
-const BlogPost = (props) => {
+
+const BlogPost = async ({ params }) => {
   const folder = "src/posts/";
-  const slug = props.params.slug;
+  const { slug } = params;
   const post = getMarkDownContent(folder, slug);
+
   return (
     <>
-      <Link href="/">Back to homepage</Link>
+      <Link href="/blog">Back to homepage</Link>
       <section className="blog-details">
         <Markdown>{post.content}</Markdown>
       </section>
     </>
   );
 };
+
 export default BlogPost;
